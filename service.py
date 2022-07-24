@@ -1,4 +1,5 @@
 
+from datetime import datetime
 from typing import Dict, List
 import json
 import requests
@@ -27,8 +28,9 @@ def get_weather(user_id : str,
         with open(file_name_ids, "r") as f:
             list_ids = json.load(f)
         file_user = "{}{}.json".format(directory_result, user_id)
+        request_data = {"user_id": user_id, "datetime" : str(datetime.now()), "data": []}
         with open(file_user, "w") as f:
-            json.dump([], f)
+            json.dump(request_data, f)
         proc = Process(
             target=sub_process_weather,
             args=(list_ids, file_user, api_key))
@@ -50,9 +52,10 @@ def get_download_progress(id_user : str,
     dc_result = {}
     if os.path.exists(file_name):
         with open(file_name, "r") as f_user, \
-            open (file_name_ids, "r") as f_ids:
+                open (file_name_ids, "r") as f_ids:
             count_total = len(json.load(f_ids))
-            count_rows_user = len(json.load(f_user))
+            request_user = json.load(f_user)
+            count_rows_user = len(request_user["data"])
         dc_result = {"total_progress":"{} %".format(
             round((count_rows_user/count_total)*100, 2))}
     else:
@@ -78,7 +81,7 @@ def sub_process_weather(list_ids : List, file_user : str, api_key : str):
         # Read the file content
         with open(file_user, "r") as f:
             list_dc_weather = json.load(f)
-        list_dc_weather.append(dc_weather)
+        list_dc_weather["data"].append(dc_weather)
         # Write the update content
         with open(file_user, "w") as f:
             json.dump(list_dc_weather, f, indent=4)
