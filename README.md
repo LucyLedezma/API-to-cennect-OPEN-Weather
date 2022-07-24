@@ -46,6 +46,12 @@ http://127.0.0.1:8585/download/progress/<any_unique_request_identification>
 for example, if you have a request called "lucia"
 http://127.0.0.1:8585/download/progress/lucia
 
+using curl command:
+```
+curl --location --request GET 'http://127.0.0.1:8585/download/progress/lucia_hoy' \
+--data-raw ''
+```
+
 ## Comments
 In this case I decided to store the list of the cities ids in a json file,
 but it can be passed in  the body as a new field like:
