@@ -16,7 +16,7 @@ To run and create the container , you have to execute:
 ```
 docker run -it --name api-weather-container  -e API_KEY=<your_api_key>  -p 8585:8585 api-weather-image 
 ```
-Then open the browser in 0.0.0.0:8585, and you will see a welcome message.
+Then open the browser in 127.0.0.1:8585, and you will see a welcome message.
 
 ## Usage
 To execute each endpoint maybe you have Postman installed, you can excecute:
@@ -48,7 +48,7 @@ http://127.0.0.1:8585/download/progress/lucia
 
 using curl command:
 ```
-curl --location --request GET 'http://127.0.0.1:8585/download/progress/lucia_hoy' \
+curl --location --request GET 'http://127.0.0.1:8585/download/progress/<any_unique_request_identification>' \
 --data-raw ''
 ```
 
