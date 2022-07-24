@@ -82,6 +82,3 @@ def sub_process_weather(list_ids : List, file_user : str, api_key : str):
         # Write the update content
         with open(file_user, "w") as f:
             json.dump(list_dc_weather, f, indent=4)
-
-# python .\main.py -a  2de435efc62490134af52698907764a8
-#http://127.0.0.1:8585/download/progress/lucialedezmasilva GET
