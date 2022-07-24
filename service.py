@@ -73,7 +73,7 @@ def sub_process_weather(list_ids : List, file_user : str, api_key : str):
     """
     for id in list_ids:
         api_url = "https://api.openweathermap.org/data/2.5/weather?id={}&appid={}&units=metric".format(id, api_key)
-        dc_weather = requests.get(api_url).json()
+        dc_weather = requests.get(api_url,  timeout=10).json()
         dc_weather = {"city_id": id,
                       "temperature": dc_weather["main"]["temp"],
                       "humidity": dc_weather["main"]["humidity"]}
