@@ -48,7 +48,7 @@ http://127.0.0.1:8585/download/progress/lucia
 
 using curl command:
 ```
-curl --location --request GET 'http://127.0.0.1:8585/download/progress/lucia_hoy' \
+curl --location --request GET 'http://127.0.0.1:8585/download/progress/<any_unique_request_identification>' \
 --data-raw ''
 ```
 
